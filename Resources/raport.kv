@@ -1,0 +1,124 @@
+<BoxLayout>:
+    orientation: 'vertical'
+<TextInput>:
+    multiline: False
+    height: 30
+    write_tab: False
+<Label>:
+    width: 50
+    height: 30
+    size_hint: (None, None)
+<Button>:
+    height: 30
+#Templates for widgets ^
+<Interface>:
+    cols: 1
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (.15, .6)
+        pos_hint: {'x': .15, 'y': .1}
+        BoxLayout:
+            id: tech_avail
+            size_hint: (.15, 1)
+        BoxLayout:
+            id: tech_info
+            size_hint: (.15, 1)
+        RelativeLayout:
+            size_hint: (1, 1)
+            width: 800
+            height: 300
+            Label:
+                text: "Technician ID"
+                pos_hint: {'x': .145, 'y': .85}
+            Label:
+                text: "Start shift"
+                pos_hint: {'x': .014, 'y': .83}
+            Label:
+                text: "End shift"
+                pos_hint: {'x': .014, 'y': .62}
+            Label:
+                text: "Complaint code"
+                pos_hint: {'x': .15, 'y': .4}
+            Label:
+                text: "Comment"
+                pos_hint: {'x': .47, 'y': .4}
+            Label:
+                text: "Assign"
+                pos_hint: {'x': .014, 'y': .38}
+            Label:
+                text: "Finish"
+                pos_hint: {'x': .014, 'y': .18}
+            TextInput:
+                id: teh_name
+                size_hint: (.15, None)
+                pos_hint: {'x': .1, 'y': .75}
+                on_text_validate: root.technician_shift()
+            TextInput:
+                id: complaint_code
+                size_hint: (.15, None)
+                pos_hint: {'x': .1, 'y': .3}
+                on_text_validate: root.write_to_file()
+            TextInput:
+                id: comment
+                size_hint: (.4, None)
+                pos_hint: {'x': .3, 'y': .3}
+                on_text_validate: root.write_to_file()
+            CheckBox:
+                id: teh_start
+                group: "shift"
+                size_hint: (.09, .09)
+                pos_hint: {'x': 0, 'y': .74}
+            CheckBox:
+                id: teh_finish
+                group: "shift"
+                size_hint: (.09, .09)
+                pos_hint: {'x': 0, 'y': .53}
+            CheckBox:
+                id: code_assign
+                group: "code"
+                size_hint: (.09, .09)
+                pos_hint: {'x': 0, 'y': .3}
+            CheckBox:
+                id: code_finish
+                group: "code"
+                size_hint: (.09, .09)
+                pos_hint: {'x': 0, 'y': .1}
+            Button:
+                text: "Write"
+                size_hint: (.07, .09)
+                pos_hint: {'x': .1, 'y': .12}
+                on_press: root.write_to_file()
+            Button:
+                text: "Update"
+                size_hint: (.07, .09)
+                pos_hint: {'x': .2, 'y': .12}
+                on_press: root.update_file()
+            Button:
+                text: "Generate report"
+                size_hint: (.15, .09)
+                pos_hint: {'x': .3, 'y': .75}
+                on_press: root.generate_report()
+            Button:
+                text: "Rewrite individual report"
+                size_hint: (.2, .09)
+                pos_hint: {'x': .46, 'y': .75}
+                on_press: root.refresh(0)
+            Button:
+                text: "Rewrite all reports"
+                size_hint: (.15, .09)
+                pos_hint: {'x': .67, 'y': .75}
+                on_press: root.refresh(1)
+            Button:
+                text: "Send"
+                size_hint: (.07, .09)
+                pos_hint: {'x': .1, 'y': .65}
+                on_press: root.technician_shift()
+    TextInput:
+        id: text_area
+        multiline: True
+        height: 500
+        width: 1200
+        size_hint: (1, 1)
+        pos_hint: {'x': 1, 'y': .7}
+        background_color: [0, 0, 0, 1]
+        foreground_color: [1, 1, 1, 1]
